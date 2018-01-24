@@ -3,10 +3,67 @@ IncludeFile("Lib\\SDK.lua")
 class "Lulu"
 
 function OnLoad()
-  if myHero.CharName == "Lulu" then
-    __PrintTextGame("Mind Lulu Loading...")
-    Lulu()
-  end
+if GetChampName(GetMyChamp()) == "Lulu" then
+  __PrintTextGame("<b><font color=\"#2EFEF7\">Mind Lulu</font></b> <font color=\"#ffffff\">Loaded</font>")
+  Lulu:Req()
+end
+end
+
+function Lulu:Req()
+   SetLuaCombo(true)
+  
+self.menu_ts = TargetSelector(1750, 0, myHero, true, true, true)
+  
+    -- Spells
+  self.Q = Spell({
+        				Slot = 0,
+                SpellType = Enum.SpellType.SkillShot,  
+                SkillShotType = Enum.SkillShotType.Line,
+                Delay = 0.25,
+                Range = 925,
+                Speed = 1450, 
+                Width = 120,
+                Collision = false,
+                Radius = 60,
+                Angle = 0,
+})
+  	self.W = Spell ({
+                Slot = 1,
+                SpellType = Enum.SpellType.Targetted,  
+                SkillShotType = Enum.SkillShotType.Line,
+                Delay = 0.25,
+                Range = 650,
+                Speed = 1000, 
+                Width = 0,
+                Collision = false,
+                Radius = 0,
+                Angle = 45,
+})
+      self.E = Spell ({
+        Slot = 2,
+        SpellType = Enum.SpellType.Targetted,  
+        SkillShotType = Enum.SkillShotType.Line,
+        Delay = 0.25,
+        Range = 650,
+        Speed = 1000, 
+        Width = 0,
+        Collision = false,
+        Radius = 0,
+        Angle = 45,
+})
+      self.R = Spell ({
+        Slot = 3,
+        SpellType = Enum.SpellType.Targetted,  
+        SkillShotType = Enum.SkillShotType.Circle,
+        Delay = 0.25,
+        Range = 900,
+        Speed = 1000, 
+        Width = 300,
+        Collision = false,
+        Radius = 150,
+        Angle = 45,
+})
+       self:LuluMenu()
 end
 
 function Lulu:LuluMenu()
@@ -33,7 +90,7 @@ function Lulu:LuluMenu()
   self.Combo = self:MenuKeyBinding("Combo",32)
 end
 
-function Xerath:OnDrawMenu()
+function Lulu:OnDrawMenu()
   if Menu_Begin(self.menu) then
     if Menu_Begin("Combo Menu") then
       self.Use_Combo_Q = Menu_Bool("Use Combo Q",self.Use_Combo_Q,self.menu)
@@ -70,60 +127,4 @@ function Xerath:OnDrawMenu()
           end
   Menu_End()
   end
-end
-
-
-  -- Spells
-  self.Q = Spell({
-        				Slot = 0,
-                SpellType = Enum.SpellType.SkillShot,  
-                SkillShotType = Enum.SkillShotType.Line,
-                Delay = 0.25,
-                Range = 925,
-                Speed = 1450, 
-                Width = 120,
-                Collision = false,
-                Radius = 60,
-                Angle = 0,
-        })
-  
-  	self.W = Spell ({
-                Slot = 1,
-                SpellType = Enum.SpellType.Targetted,  
-                SkillShotType = Enum.SkillShotType.Line,
-                Delay = 0.25,
-                Range = 650,
-                Speed = 1000, 
-                Width = 0,
-                Collision = false,
-                Radius = 0,
-                Angle = 45,
-      })
-
-      self.E = Spell ({
-        Slot = 2,
-        SpellType = Enum.SpellType.Targetted,  
-        SkillShotType = Enum.SkillShotType.Line,
-        Delay = 0.25,
-        Range = 650,
-        Speed = 1000, 
-        Width = 0,
-        Collision = false,
-        Radius = 0,
-        Angle = 45,
-})
-
-      self.E = Spell ({
-        Slot = 3,
-        SpellType = Enum.SpellType.Targetted,  
-        SkillShotType = Enum.SkillShotType.Circle,
-        Delay = 0.25,
-        Range = 900,
-        Speed = 1000, 
-        Width = 300,
-        Collision = false,
-        Radius = 150,
-        Angle = 45,
-})
-
 end
