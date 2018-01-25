@@ -19,7 +19,7 @@ function Lulu:OnTick()
 function Lulu:Req()
    SetLuaCombo(true)
   
-self.menu_ts = TargetSelector(1750, 0, myHero, true, true, true)
+self.menu_ts = targetSelector(1750, 0, myHero, true, true, true)
   
     -- Spells
   self.Q = Spell({
