@@ -9,6 +9,13 @@ if GetChampName(GetMyChamp()) == "Lulu" then
 end
 end
 
+function Lulu:OnTick()
+  if IsDead(myHero.Addr) or IsTyping() or IsDodging() then 
+    return 
+    end
+  end
+
+
 function Lulu:Req()
    SetLuaCombo(true)
   
